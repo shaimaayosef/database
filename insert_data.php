@@ -1,7 +1,7 @@
 <?php
 
 $servername = "localhost";
-$username = "scandiAdmin";
+$username = "root";
 $password = "1234";
 $dbname = "scandi4ecommerce";
 

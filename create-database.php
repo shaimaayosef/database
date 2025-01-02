@@ -2,7 +2,7 @@
 
 // Database connection details
 $servername = "localhost";
-$username = "scandiAdmin";
+$username = "root";
 $password = "1234";
 $dbname = "scandi4ecommerce";
 
@@ -24,12 +24,6 @@ $sql = "CREATE TABLE IF NOT EXISTS categories (
     name VARCHAR(255) NOT NULL
 )";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table categories created successfully\n";
-} else {
-    echo "Error creating table: " . $conn->error . "\n";
-}
-
 // Create products table
 $sql = "CREATE TABLE IF NOT EXISTS products (
     id VARCHAR(255) PRIMARY KEY,
@@ -43,11 +37,6 @@ $sql = "CREATE TABLE IF NOT EXISTS products (
     FOREIGN KEY (category_id) REFERENCES categories(id)
 )";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table products created successfully\n";
-} else {
-    echo "Error creating table: " . $conn->error . "\n";
-}
 
 // Create product_gallery table
 $sql = "CREATE TABLE IF NOT EXISTS product_gallery (
@@ -56,11 +45,6 @@ $sql = "CREATE TABLE IF NOT EXISTS product_gallery (
     FOREIGN KEY (product_id) REFERENCES products(id)
 )";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table product_gallery created successfully\n";
-} else {
-    echo "Error creating table: " . $conn->error . "\n";
-}
 
 // Create product_attributes table
 $sql = "CREATE TABLE IF NOT EXISTS product_attributes (
@@ -70,12 +54,6 @@ $sql = "CREATE TABLE IF NOT EXISTS product_attributes (
     attribute_type VARCHAR(255),
     FOREIGN KEY (product_id) REFERENCES products(id)
 )";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Table product_attributes created successfully\n";
-} else {
-    echo "Error creating table: " . $conn->error . "\n";
-}
 
 // Create product_attribute_items table
 $sql = "CREATE TABLE IF NOT EXISTS product_attribute_items (
@@ -87,12 +65,6 @@ $sql = "CREATE TABLE IF NOT EXISTS product_attribute_items (
     FOREIGN KEY (product_id) REFERENCES products(id)
 )";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table product_attribute_items created successfully\n";
-} else {
-    echo "Error creating table: " . $conn->error . "\n";
-}
-
 // Create product_prices table
 $sql = "CREATE TABLE IF NOT EXISTS product_prices (
     product_id VARCHAR(255),
@@ -102,11 +74,6 @@ $sql = "CREATE TABLE IF NOT EXISTS product_prices (
     FOREIGN KEY (product_id) REFERENCES products(id)
 )";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table product_prices created successfully\n";
-} else {
-    echo "Error creating table: " . $conn->error . "\n";
-}
 
 // create orders table
 $sql = "CREATE TABLE IF NOT EXISTS orders (
@@ -114,11 +81,7 @@ $sql = "CREATE TABLE IF NOT EXISTS orders (
     total_price DECIMAL(10, 2) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
-if ($conn->query($sql) === TRUE) {
-    echo "Table orders created successfully\n";
-} else {
-    echo "Error creating table: " . $conn->error . "\n";
-}
+
 
 // create order_products table
 $sql = "CREATE TABLE IF NOT EXISTS order_products (
@@ -130,10 +93,3 @@ $sql = "CREATE TABLE IF NOT EXISTS order_products (
     quantity INT NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders(id)
 )";
-if ($conn->query($sql) === TRUE) {
-    echo "Table order_products created successfully\n";
-} else {
-    echo "Error creating table: " . $conn->error . "\n";
-}
-
-$conn->close();
